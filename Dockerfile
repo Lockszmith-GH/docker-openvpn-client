@@ -6,4 +6,9 @@ RUN apk add --no-cache openvpn
 
 ENTRYPOINT ["openvpn"]
 
+COPY healthcheck /
+
+HEALTHCHECK --interval=30m \
+  CMD healthcheck
+
 CMD ["--cd", "/vpn", "--config", "./vpn.conf", "--auth-nocache"]
