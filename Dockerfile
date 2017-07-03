@@ -9,6 +9,6 @@ ENTRYPOINT ["openvpn"]
 COPY healthcheck /
 
 HEALTHCHECK --interval=30m \
-  CMD healthcheck
+  CMD /healthcheck
 
 CMD ["--cd", "/vpn", "--config", "./vpn.conf", "--auth-nocache"]
