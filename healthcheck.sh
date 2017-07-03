@@ -2,7 +2,7 @@
 
 EXPECTED=$(cat /vpn/vpn.conf | sed -n 's/.*remote \(.*\)443.*/\1/p' | xargs)
 
-ACTUAL=$(wget -qO- api.ipify.org | xargs)
+ACTUAL=$(dig o-o.myaddr.l.google.com txt @ns1.google.com +short | xargs)
 
 if [ "$ACTUAL" == "$EXPECTED" ];then
   exit
