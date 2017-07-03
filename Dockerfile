@@ -6,7 +6,7 @@ RUN apk add --no-cache openvpn
 
 ENTRYPOINT ["openvpn"]
 
-COPY healthcheck /usr/local/bin
+COPY healthcheck.sh /usr/local/bin
 
 HEALTHCHECK --interval=30m \
   CMD healthcheck
