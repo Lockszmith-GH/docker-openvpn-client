@@ -2,10 +2,8 @@
 
 EXPECTED=$(cat /vpn/vpn.conf | sed -n 's/.*remote \(.*\)443.*/\1/p' | xargs)
 
-ACTUAL=$(dig o-o.myaddr.l.google.com txt @ns1.google.com +short | xargs)
+ACTUAL=$(dig o-o.myaddr.l.google.com txt @8.8.8.8 +short | xargs)
 
-if [ "$ACTUAL" == "$EXPECTED" ];then
-  exit
-else
-  exit 1
-fi
+echo "Expected '$EXPECTED' and found '$ACTUAL'"
+
+[[ "$ACTUAL" == "$EXPECTED" ]]
