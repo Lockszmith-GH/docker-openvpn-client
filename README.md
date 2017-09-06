@@ -8,7 +8,7 @@ Original idea borrowed from https://github.com/dperson/openvpn-client
 2. You should add the password for the private key in the `client.ovpn` to `client.pwd`
 3. Run the following, I recommend adding `--auth-nocache`
 
-```
+```shell
 docker run -d --name vpn-client \
   --cap-add=NET_ADMIN \
   --device /dev/net/tun \
@@ -22,7 +22,7 @@ docker run -d --name vpn-client \
 
 To test that the VPN is working as intended, you can run the following command to get the public IP address that will be used by containers using the VPN network. This command uses the [library/busybox image](https://hub.docker.com/_/busybox/) to fetch the public IP from the [ipify service](www.ipify.org) and print it to STDOUT.
 
-```
+```shell
 docker run --rm --net=container:vpn-client busybox wget -qO- api.ipify.org
 ```
 
@@ -30,7 +30,7 @@ docker run --rm --net=container:vpn-client busybox wget -qO- api.ipify.org
 
 Use `--net=container:<container-id>` -- routes available by the VPN client will be made available to the container.
 
-```
+```shell
 docker run -it --rm \
   --net=container:vpn-client
   ubuntu /bin/bash
@@ -38,7 +38,7 @@ docker run -it --rm \
 
 ### Using with Compose
 
-```
+```yml
 version: '2'
 services:
   my-service:
